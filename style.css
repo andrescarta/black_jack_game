@@ -13,16 +13,28 @@ body {
 h1 {
     color: goldenrod;
     font-size: 45px;
-
+    
 }
 
 p {
     margin: 10px;
-    font-size: 25px;
 }
 
 #message-el {
     font-style: italic;
+}
+
+#start-btn {
+    color: #016f32;
+    width: 150px;
+    background-color: goldenrod;
+    border: none;
+    padding: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin: 3px;
 }
 
 /* Algun cambio desde otro ordenador */
