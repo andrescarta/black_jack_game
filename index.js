@@ -1,33 +1,74 @@
-// var firstCard = Math.ceil( Math.random(0,1.1) * 10 )
-var firstCard = Math.floor(Math.random() * (13 - 1 + 1) ) + 1;
-var secondCard = Math.floor(Math.random() * (13 - 1 + 1) ) + 1;
-var theerdCard 
-var sum = firstCard + secondCard
+var player = {
+    name: "Per",
+    chips: 145
+}
+var cards = []
+var sum = 0
 var hasBlackJack = false
-var isAlive = true
+var isAlive = false
 var message = ''
 var messageEl = document.getElementById("message-el")
-var sumEl = document.querySelector(".sum-el")
-var cardsEl = document.querySelector("cards-el")
+var sumEl = document.getElementById("sum-el")
+var cardsEl = document.getElementById("cards-el")
+var playerEl = document.getElementById('player-el')
+
+
+playerEl.textContent = player.name + ": $" + player.chips
+
+function getRandomCard() {
+    let randomNumber = Math.ceil(Math.random() * 13);
+    if (randomNumber === 1) {
+        return 11
+    }
+    else if (randomNumber > 10) {
+        return 10
+    }
+    else {
+        return randomNumber
+    }
+}
 
 function startGame() {
+    isAlive = true
+    let firstCard = getRandomCard()
+    let secondCard = getRandomCard()
+    cards = [firstCard, secondCard]
+    sum = firstCard + secondCard
+    renderGame()
+}
 
-    cardsEl.textContent = "Card: " + firstCard + " + " + secondCard 
+function renderGame() {
+    cardsEl.textContent = "Card: " + cards.concat()
     sumEl.textContent = "Sum: " + sum
 
     if (sum < 21){
         message = "Do you want to draw a new card?"
     } else if (sum === 21) {
-        message = "Wohoo you've got a Blackjack!! "
+        message = "Wohoo you've got a Blackjack!!"
         hasBlackJack = true
     } else if (sum > 21) {
-        message = "You're out of the game 😭"
+        message = "You're out of the game"
         isAlive = false
     }
-    
+
     messageEl.textContent = message
 }
 
 function newCard (){
-theerdCard = Math.floor(Math.random() * (13 - 1 + 1) ) + 1;
+    if (isAlive === true && hasBlackJack === false) {
+
+        let card = getRandomCard ()
+        sum += card
+        cards.push(card);
+        console.log("Drwing a new card from the desk")
+        renderGame()
+    }
+}
+
+function arraySum(array){
+    let contador = 0
+    for (let i = 0; i < array.length; i++) {
+         contador += array[i];
+    }
+    return contador
 }
